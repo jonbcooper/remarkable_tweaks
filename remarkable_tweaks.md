@@ -21,7 +21,7 @@ That is it! Restart Remarkable and the preview screen should stay wherever you a
 Indeed, this very document was written with the fixed version and it behaves just like the old Remarkable used to. Gorgeous. The code was revised by paiardin to allow different fonts in the text window, so you get the added benefit of that, too!
 
 
-![](preview.png)
+![](/home/jon/preview.png)
 
 ***
 
@@ -65,7 +65,7 @@ However, that still did not solve the problem when I started Remarkable from the
 
 ***
 
-The problem is that you need to tell it the full path of the markdown file like this:
+The problem is that you either need to tell it the full path of the markdown file like this:
 
 ***
 
@@ -73,8 +73,16 @@ The problem is that you need to tell it the full path of the markdown file like 
 
 ***
  
-Then it will render the styled pdf files correctly with the images included. 
+ or you need to make sure that the markdown file contains the full path of each image file in it like this:
+ 
+ ***
+ 
+ `![](/home/jon/preview.png)`
+ 
+ ***
+ 
+ or both. Then it will render the styled pdf files correctly with the images included. In other words it is only sufficient to just give the relative path of each image, if the full path of the markdown file is specified on the command line. 
 
 ***
 
-That is it! Remarkable will go back to being Remarkable again!
+That is it! Remarkable will go back to being remarkable again!

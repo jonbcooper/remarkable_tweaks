@@ -81,7 +81,7 @@
    Indeed, this very document was written with the fixed version and it behaves just like the old Remarkable used to. Gorgeous. The code was revised by paiardin to allow different fonts in the text window, so you get the added benefit of that, too!
   </p>
   <p>
-   <img alt="" src="preview.png"/>
+   <img alt="" src="/home/jon/preview.png"/>
   </p>
   <hr/>
   <p>
@@ -140,7 +140,7 @@
   </p>
   <hr/>
   <p>
-   The problem is that you need to tell it the full path of the markdown file like this:
+   The problem is that you either need to tell it the full path of the markdown file like this:
   </p>
   <hr/>
   <p>
@@ -150,11 +150,21 @@
   </p>
   <hr/>
   <p>
-   Then it will render the styled pdf files correctly with the images included.
+   or you need to make sure that the markdown file contains the full path of each image file in it like this:
   </p>
   <hr/>
   <p>
-   That is it! Remarkable will go back to being Remarkable again!
+   <code>
+    ![](/home/jon/preview.png)
+   </code>
+  </p>
+  <hr/>
+  <p>
+   or both. Then it will render the styled pdf files correctly with the images included. In other words it is only sufficient to just give the relative path of each image, if the full path of the markdown file is specified on the command line.
+  </p>
+  <hr/>
+  <p>
+   That is it! Remarkable will go back to being remarkable again!
   </p>
   <script src="/usr/share/remarkable/media/highlight.min.js">
   </script>
