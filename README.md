@@ -27,7 +27,7 @@ Indeed, this very document was written with the fixed version and it behaves jus
 
 **Saving to pdf**
 
-It turns out that this problem was due to two files that were missing in my installation. When a document is made into html, you can edit the file and see that it has inserted links to several files including:  
+It looked like this problem was due to two files that were missing in my installation. When Remarkable saves a document as html, you can edit the file and see that it has inserted links to several files including:  
 
 ***
 
@@ -53,6 +53,28 @@ On my installation, these two files were missing. I could see that it was lookin
 
 The two files can be downloaded from the Remarkable github site [here](https://github.com/jamiemcg/Remarkable/tree/master/data/media). 
 
-To solve this problem, we need to find which folder Remarkable is expecting these files to be in. A look inside one of the html files it produces will tell you. You then need to move the above two files to that folder, again with root or admin privilege. 
+We need to find which folder Remarkable is expecting these files to be in. A look inside one of the html files it produces will tell you. You then need to move the above two files to that folder, again with root or admin privilege. 
+
+
+***
+
+However, that still did not solve the problem when I started Remarkable from the command line like this: 
+
+
+`remarkable my_file.md` 
+
+***
+
+The problem is that you need to tell it the full path of the markdown file like this:
+
+***
+
+`remarkable /home/jon/my_file.md` 
+
+***
+ 
+Then it will render the styled pdf files correctly with the images included. 
+
+***
 
 That is it! Remarkable will go back to being Remarkable again!
