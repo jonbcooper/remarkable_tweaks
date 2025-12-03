@@ -90,7 +90,7 @@
    </strong>
   </p>
   <p>
-   It turns out that this problem was due to two files that were missing in my installation. When a document is made into html, you can edit the file and see that it has inserted links to several files including:
+   It looked like this problem was due to two files that were missing in my installation. When Remarkable saves a document as html, you can edit the file and see that it has inserted links to several files including:
   </p>
   <hr/>
   <p>
@@ -127,8 +127,32 @@
    .
   </p>
   <p>
-   To solve this problem, we need to find which folder Remarkable is expecting these files to be in. A look inside one of the html files it produces will tell you. You then need to move the above two files to that folder, again with root or admin privilege.
+   We need to find which folder Remarkable is expecting these files to be in. A look inside one of the html files it produces will tell you. You then need to move the above two files to that folder, again with root or admin privilege.
   </p>
+  <hr/>
+  <p>
+   However, that still did not solve the problem when I started Remarkable from the command line like this:
+  </p>
+  <p>
+   <code>
+    remarkable my_file.md
+   </code>
+  </p>
+  <hr/>
+  <p>
+   The problem is that you need to tell it the full path of the markdown file like this:
+  </p>
+  <hr/>
+  <p>
+   <code>
+    remarkable /home/jon/my_file.md
+   </code>
+  </p>
+  <hr/>
+  <p>
+   Then it will render the styled pdf files correctly with the images included.
+  </p>
+  <hr/>
   <p>
    That is it! Remarkable will go back to being Remarkable again!
   </p>
