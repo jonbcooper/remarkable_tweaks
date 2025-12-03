@@ -14,7 +14,7 @@ This describes a couple of fixes to Remarkable which aim to correct:
 
 A solution to this was posted by github user *paiardin* [here](https://github.com/jamiemcg/Remarkable/issues/434) and I found the preview window was much better but it was still very jumpy on my old linux laptop when editing large documents. I managed to get it to work better for me with some tweaking and the code is [here](https://github.com/jonbcooper/remarkable_tweaks/blob/main/RemarkableWindow.py). There is a bit more description [here](https://github.com/jamiemcg/Remarkable/issues/434#issuecomment-3599756011). 
 
-To see if this helps on your setup, you would need to be happy to download the file `RemarkableWindow.py` from this site. Then you would need to use the search function in your file manager to find where the original file with this name was installed on your system. Obviously, I recommend making a safe copy of it or just renaming it first and this would need root or administrator privilege. Move the downloaded version of RemarkableWindow.py to that folder, again as root or administrator. 
+To see if this helps on your setup, you would need to be happy to download the file `RemarkableWindow.py` from the above link or from my [github repository](https://github.com/jonbcooper/remarkable_tweaks/tree/main). Then you would need to use the search function in your file manager to find where the original file with this name is installed on your system. Obviously, I recommend making a safe copy of it or just renaming it first and this would need root or administrator privilege. Move the downloaded version of RemarkableWindow.py to that folder, again as root or administrator. 
 
 That is it! Restart Remarkable and the preview screen should stay wherever you are editing the file. 
 
@@ -53,6 +53,3 @@ The two files can be downloaded from the Remarkable github site [here](https://g
 To solve this problem, we need to find which folder Remarkable is expecting these files to be in. A look inside one of the html files it produces will tell you. You then need to move the above two files to that folder, again with root or admin privilege. 
 
 That is it! Remarkable will go back to being Remarkable again!
-
-
-
