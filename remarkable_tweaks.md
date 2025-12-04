@@ -21,7 +21,7 @@ That is it! Restart Remarkable and the preview screen should stay wherever you a
 Indeed, this very document was written with the fixed version and it behaves just like the old Remarkable used to. Gorgeous. The code was revised by paiardin to allow different fonts in the text window, so you get the added benefit of that, too!
 
 
-![](/home/jon/preview.png)
+![](preview.png)
 
 ***
 
