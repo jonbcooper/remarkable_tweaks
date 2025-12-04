@@ -81,7 +81,7 @@ The problem is that you either need to tell it the full path of the markdown fil
  
  ***
  
- or both. Then it will render the styled pdf files correctly with the images included. In other words it is only sufficient to just give the relative path of each image, if the full path of the markdown file is specified on the command line. 
+ or both. Then it will render the styled pdf files correctly with the images included. In other words it is only sufficient to just give the relative path of each image, if the full path of the markdown file is specified on the command line. Using the relative path for each image is better if you want to mount your markdown or html on a server (like github) which will have a totally different file structure!
 
 ***
 
