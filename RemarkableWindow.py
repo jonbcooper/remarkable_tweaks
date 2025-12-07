@@ -156,17 +156,17 @@ class RemarkableWindow(Window):
         # Font size control buttons
         self.toolbutton_font_increase = Gtk.ToolButton()
         self.toolbutton_font_increase.set_icon_name('zoom-in')
-        self.toolbutton_font_increase.set_tooltip_text('Aumenta dimensione carattere (Ctrl++)')
+        self.toolbutton_font_increase.set_tooltip_text('Increase font size (Ctrl++)')
         self.toolbutton_font_increase.connect('clicked', self.on_menuitem_editor_font_size_increase_activate)
         
         self.toolbutton_font_decrease = Gtk.ToolButton()
         self.toolbutton_font_decrease.set_icon_name('zoom-out')
-        self.toolbutton_font_decrease.set_tooltip_text('Diminuisci dimensione carattere (Ctrl+-)')
+        self.toolbutton_font_decrease.set_tooltip_text('Decrease font size (Ctrl+-)')
         self.toolbutton_font_decrease.connect('clicked', self.on_menuitem_editor_font_size_decrease_activate)
         
         self.toolbutton_font_reset = Gtk.ToolButton()
         self.toolbutton_font_reset.set_icon_name('zoom-original')
-        self.toolbutton_font_reset.set_tooltip_text('Ripristina dimensione carattere (Ctrl+0)')
+        self.toolbutton_font_reset.set_tooltip_text('Reset font size (Ctrl+0)')
         self.toolbutton_font_reset.connect('clicked', self.on_menuitem_editor_font_size_reset_activate)
         
         # Aggiungi i pulsanti alla toolbar
@@ -622,6 +622,7 @@ class RemarkableWindow(Window):
         text = self.text_buffer.get_text(start, end, False)
         text = self.text_buffer.get_text(self.text_buffer.get_start_iter(), self.text_buffer.get_end_iter(), False)
         dirname = os.path.dirname(self.name)
+        #dirname=os.path.abspath(os.getcwd())
         text = re.sub(r'(\!\[.*?\]\()([^/][^:]*?\))', lambda m, dirname=dirname: m.group(1) + os.path.join(dirname, m.group(2)), text)
         try:
             html_middle = markdown.markdown(text, self.default_extensions)
