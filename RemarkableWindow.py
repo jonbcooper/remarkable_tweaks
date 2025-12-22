@@ -181,6 +181,7 @@ class RemarkableWindow(Window):
         self.update_status_bar(self)
         self.update_live_preview(self)
 
+        self.delay_started=False
         text = ""
 
         self.wrap_box = self.builder.get_object("wrap_box")
@@ -622,7 +623,6 @@ class RemarkableWindow(Window):
         text = self.text_buffer.get_text(start, end, False)
         text = self.text_buffer.get_text(self.text_buffer.get_start_iter(), self.text_buffer.get_end_iter(), False)
         dirname = os.path.dirname(self.name)
-        #dirname=os.path.abspath(os.getcwd())
         text = re.sub(r'(\!\[.*?\]\()([^/][^:]*?\))', lambda m, dirname=dirname: m.group(1) + os.path.join(dirname, m.group(2)), text)
         try:
             html_middle = markdown.markdown(text, self.default_extensions)
@@ -1666,6 +1666,10 @@ class RemarkableWindow(Window):
     #                 print("You have the latest version of this app available")
     #     except:
     #         print("Warning: Remarkable could not connect to the internet to check for updates")
+     
+    def call_live_updater(self, line):
+        self.update_live_preview(self, line)
+        self.delay_started=False
 
     def on_text_view_changed(self, widget):
         start, end = self.text_buffer.get_bounds()
@@ -1677,7 +1681,10 @@ class RemarkableWindow(Window):
         if self.live_preview.get_visible():
             cursor_iter = self.text_buffer.get_iter_at_mark(self.text_buffer.get_insert())
             line = cursor_iter.get_line()
-            self.update_live_preview(self, line)
+            #self.update_live_preview(self, line)
+            if self.delay_started==False:
+               self.delay_started=True
+               GLib.timeout_add_seconds(1, self.call_live_updater, line)
         else:  # Live preview not enabled, don't need to update the view
             pass
 
@@ -1748,7 +1755,7 @@ class RemarkableWindow(Window):
         self.status_message = "Lines: " + str(lines) + ", " + "Words: " + str(word_count) + ", Characters: " + str(chars)
         self.statusbar.push(self.context_id, self.status_message)
 
-    def update_live_preview(self, widet, line_number=None):
+    def update_live_preview(self, widget, line_number=None):
         text = self.text_buffer.get_text(self.text_buffer.get_start_iter(), self.text_buffer.get_end_iter(), False)
 
         if line_number is not None:
