@@ -98,4 +98,4 @@ You may remove the delay altogether by clicking the [-] button to set it to zero
 
 ***
 
-<center><i>Hope some of this helps Remarkable to be remarkable again!</i><center> 
+<center><i>Hope some of this helps Remarkable to be remarkable again!</i></center> 
