@@ -152,7 +152,9 @@ class RemarkableWindow(Window):
         self.toolbutton_redo = self.builder.get_object("toolbutton_redo")
         self.toolbutton_redo.set_sensitive(False)
 
-        
+        self.separator1 = Gtk.SeparatorToolItem()
+        self.toolbar.insert(self.separator1,-1)
+
         # Font size control buttons
         self.toolbutton_font_increase = Gtk.ToolButton()
         self.toolbutton_font_increase.set_icon_name('zoom-in')
@@ -174,6 +176,33 @@ class RemarkableWindow(Window):
         self.toolbar.insert(self.toolbutton_font_decrease, -1)
         self.toolbar.insert(self.toolbutton_font_reset, -1)
 
+        self.separator2 = Gtk.SeparatorToolItem()
+        self.toolbar.insert(self.separator2,-1)
+
+        # Delay control buttons
+        self.toolbutton_delay_increase = Gtk.ToolButton()
+        self.toolbutton_delay_increase.set_icon_name('zoom-in')
+        self.toolbutton_delay_increase.set_tooltip_text('Increase delay to live updates by 1 sec')
+        self.toolbutton_delay_increase.connect('clicked', self.on_menuitem_editor_delay_change, 1)
+
+        self.toolbutton_delay_decrease = Gtk.ToolButton()
+        self.toolbutton_delay_decrease.set_icon_name('zoom-out')
+        self.toolbutton_delay_decrease.set_tooltip_text('Decrease delay to live updates by 1 sec')
+        self.toolbutton_delay_decrease.connect('clicked', self.on_menuitem_editor_delay_change, -1)
+
+        self.toolbutton_delay_reset = Gtk.ToolButton()
+        self.toolbutton_delay_reset.set_icon_name('zoom-original')
+        self.toolbutton_delay_reset.set_tooltip_text('Reset delay to live updates to 1 sec')
+        self.toolbutton_delay_reset.connect('clicked', self.on_menuitem_editor_delay_change, 0)
+
+        # Aggiungi i pulsanti alla toolbar
+        self.toolbar.insert(self.toolbutton_delay_increase, -1)
+        self.toolbar.insert(self.toolbutton_delay_decrease, -1)
+        self.toolbar.insert(self.toolbutton_delay_reset, -1)
+
+        self.separator3 = Gtk.SeparatorToolItem()
+        self.toolbar.insert(self.separator3,-1)
+
         self.statusbar = self.builder.get_object("statusbar")
         self.context_id = self.statusbar.get_context_id("main status bar")
 
@@ -182,6 +211,7 @@ class RemarkableWindow(Window):
         self.update_live_preview(self)
 
         self.delay_started=False
+        self.delay=1
         text = ""
 
         self.wrap_box = self.builder.get_object("wrap_box")
@@ -1068,6 +1098,15 @@ class RemarkableWindow(Window):
                 return True
         return False
 
+    def on_menuitem_editor_delay_change(self, widget, delay):
+        if delay==0:
+           self.delay=1
+        else:
+              self.delay+=delay
+              if self.delay<0:
+                 self.delay=0
+        self.update_status_bar(self)
+
     def on_menuitem_statusbar_activate(self, widget):
         if self.statusbar.get_visible():
             self.statusbar.set_visible(False)
@@ -1684,7 +1723,7 @@ class RemarkableWindow(Window):
             #self.update_live_preview(self, line)
             if self.delay_started==False:
                self.delay_started=True
-               GLib.timeout_add_seconds(1, self.call_live_updater, line)
+               GLib.timeout_add_seconds(self.delay, self.call_live_updater, line)
         else:  # Live preview not enabled, don't need to update the view
             pass
 
@@ -1752,7 +1791,14 @@ class RemarkableWindow(Window):
             if w not in word_exceptions:
                 if not re.match('^[0-9]{1,3}$', w):
                     word_count += 1
-        self.status_message = "Lines: " + str(lines) + ", " + "Words: " + str(word_count) + ", Characters: " + str(chars)
+
+        # maybe not for production use!
+        try:
+            delay=self.delay
+        except:
+            delay=1
+
+        self.status_message = "Lines: " + str(lines) + ", " + "Words: " + str(word_count) + ", Characters: " + str(chars) + ". " +"Live update delay: ".rjust(100) + str(delay) + " sec."
         self.statusbar.push(self.context_id, self.status_message)
 
     def update_live_preview(self, widget, line_number=None):
