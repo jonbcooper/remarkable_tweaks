@@ -89,13 +89,13 @@ The problem is that you either need to tell it the full path of the markdown fil
 
 With an old computer and pictures in your document you, may still get a pronounced screen-flashing effect in the right-hand preview screen each time you type a new character. The tweaked version aims to reduce this effect by introducing a delay to the live updates so that they occur at fixed intervals. The default interval is one second which seems to be OK, but you may want to change it with the right-hand set of [+], [-] and [1] buttons shown below. Increasing it to say 3 or more seconds should help to reduce the flashing effect a bit more. 
 
-![](delay.png)
+<center>![](delay.png)</center>
 
 You may remove the delay altogether by clicking the [-] button to set it to zero. The current delay/interval is shown in the bottom line of the screen towards the right-hand side. 
 
-![](update.png)
+<center>![](update.png)</center>
 
 
 ***
 
-<center><i>Hope some of this helps Remarkable to be remarkable again!</i><center> 
+<center><i>Hope some of this helps Remarkable to be remarkable again!</i></center> 
